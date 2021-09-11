@@ -8,6 +8,7 @@ $white: #FFFFFF;
 $orange: #FF9701;
 $dark-orange: #FF5C00;
 $dark: #333333;
+$black: #222222;
 $grey: #A4A4A4;
 
 /*------ Mixins ------*/
@@ -227,6 +228,7 @@ button {
     right: 0;
     width: 158px;
     transform: rotate(-90deg) translateY(60px);
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.08);
     border-radius: 10px 10px 0 0;
 
     &:hover {
@@ -238,6 +240,253 @@ button {
         height: 15px;
         margin-right: 10px;
         fill: $white;
+    }
+}
+
+/*------ Types ------*/
+
+.types {
+    margin: 70px 0 100px;
+}
+
+.types__card {
+    display: block;
+    position: relative;
+    min-height: 208px;
+    padding: 30px;
+    background: $white;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    transition: all 0.4s;
+
+    &::after {
+        content: '';
+        width: 167px;
+        height: 167px;
+        border-radius: 50%;
+        background: linear-gradient(165.46deg, #FF9700 10.14%, #FF6800 78.17%, #FF6802 78.33%);
+        position: absolute;
+        top: 23px;
+        right: 68px;
+        z-index: 1;
+    }
+
+    &:hover {
+        transform: translateY(-15px);
+
+        .types__card-title {
+            color: $orange;
+        }
+
+        .types__card-arrow {
+            opacity: 1;
+        }
+    }
+
+    .types__card-title {
+        font-size: 24px;
+        line-height: 1.25;
+        font-weight: 700;
+        color: $dark;
+        margin: 0;
+        padding: 0;
+        transition: all 0.4s;
+    }
+
+    .types__card-arrow {
+        width: 31px;
+        height: 14px;
+        opacity: 0;
+        margin-top: 98px;
+        transition: all 0.4s;
+    }
+
+    .types__card-img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+    }
+}
+
+/*------ About ------*/
+
+.about__title {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 36px;
+    line-height: 1.28;
+}
+
+.about__description {
+    margin: 0 0 50px;
+    font-size: 18px;
+    line-height: 1.44;
+    color: $dark;
+    font-weight: 400;
+}
+
+.about__logs {
+    display: flex;
+
+    .about__log-item {
+        @include center;
+        flex-direction: column;
+        margin-right: 105px;
+
+        .log-img {
+            width: 55px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .log-title {
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+}
+
+/*------ Projects ------*/
+
+.projects {
+    margin: 60px 0 70px;
+
+    .container {
+        @include center;
+        flex-direction: column;
+    }
+}
+
+.section-title {
+    font-size: 36px;
+    line-height: 1.28;
+    text-align: center;
+    color: $dark;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.project__item-img {
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.projects__btn {
+    width: 168px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 22px;
+
+    &:hover {
+        color: $white;
+    }
+}
+
+/*------ Benefits ------*/
+
+.benefit-card {
+    @include center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.benefit-img {
+    width: 70px;
+    height: 70px;
+}
+
+.benefit-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.44;
+}
+
+/*------ Request ------*/
+
+.request {
+    margin: 70px 0 70px;
+    background: linear-gradient(177.7deg, #FF9700 10.14%, #FF6800 78.17%, #FF6802 78.33%);
+    color: $white;
+    position: relative;
+
+    .container {
+        @include center;
+        flex-direction: column;
+        padding: 50px;
+    }
+}
+
+.request__wood-1 {
+    position: absolute;
+    bottom: -20%;
+    left: 10%;
+}
+
+.request__wood-2 {
+    position: absolute;
+    top: -30%;
+    right: 7%;
+}
+
+.request__title {
+    font-size: 42px;
+    line-height: 1.38;
+    text-align: center;
+    font-weight: 700;
+}
+
+.request__text {
+    font-size: 18px;
+    line-height: 1.44;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.request__form {
+    display: flex;
+    margin-top: 20px;
+
+    .request__input {
+        width: 222px;
+        height: 50px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .request__btn {
+        width: 222px;
+        height: 50px;
+        background: $dark;
+        color: $white;
+        font-family: inherit;
+        font-weight: 700;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        margin-left: 10px;
+        transition: all 0.4s;
+
+        &:hover {
+            background: $black;
+        }
+    }
+}
+
+.request__data {
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    color: #A72800;
+    margin-top: 10px;
+
+    a {
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 
