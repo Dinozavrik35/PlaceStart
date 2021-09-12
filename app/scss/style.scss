@@ -10,6 +10,7 @@ $dark-orange: #FF5C00;
 $dark: #333333;
 $black: #222222;
 $grey: #A4A4A4;
+$lightGrey: #AAAAAA;
 
 /*------ Mixins ------*/
 
@@ -87,7 +88,7 @@ button {
     background-color: $white;
     height: 80px;
 
-    .header__inner {
+    &__inner {
         height: 100%;
         display: flex;
         justify-content: space-between;
@@ -194,7 +195,7 @@ button {
         height: fit-content;
     }
 
-    .intro__title {
+    &__title {
         font-size: 58px;
         font-family: 'Manrope', sans-serif;
         line-height: 64px;
@@ -203,7 +204,7 @@ button {
         line-height: 1.1;
     }
 
-    .intro__subtitle {
+    &__subtitle {
         margin-top: 10px;
         font-family: 'Manrope', sans-serif;
         font-weight: 500;
@@ -211,7 +212,7 @@ button {
         line-height: 30px;
     }
 
-    .intro__btn {
+    &__btn {
         margin-top: 40px;
         width: 232px;
         height: 50px;
@@ -226,6 +227,7 @@ button {
     position: fixed;
     top: 370px;
     right: 0;
+    z-index: 30;
     width: 158px;
     transform: rotate(-90deg) translateY(60px);
     box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.08);
@@ -283,7 +285,7 @@ button {
         }
     }
 
-    .types__card-title {
+    &-title {
         font-size: 24px;
         line-height: 1.25;
         font-weight: 700;
@@ -293,15 +295,16 @@ button {
         transition: all 0.4s;
     }
 
-    .types__card-arrow {
+    &-arrow {
         width: 31px;
         height: 14px;
         opacity: 0;
         margin-top: 98px;
+        fill: $orange;
         transition: all 0.4s;
     }
 
-    .types__card-img {
+    &-img {
         position: absolute;
         right: 0;
         bottom: 0;
@@ -367,9 +370,76 @@ button {
     font-weight: 700;
 }
 
-.project__item-img {
-    border-radius: 10px;
+.project__item {
+    display: block;
+    position: relative;
     margin-bottom: 30px;
+
+    &::after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(255, 151, 1, 0.85) 0%, rgba(255, 104, 2, 0.85) 100%), url(Дом_из_клееного_бруса_6.jpg), #C4C4C4;
+        border-radius: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: all 0.4s;
+    }
+
+    &:hover {
+        &::after {
+            opacity: 0.85;
+        }
+
+        .project__item-text {
+            transform: translateY(-60px);
+        }
+
+        .project__item-address, .project__item-arrow {
+            opacity: 1;
+        }
+    }
+
+    &-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+    
+    &-text {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 1.44;
+        color: $white;
+        position: absolute;
+        left: 30px;
+        bottom: -50px;
+        z-index: 30;
+        transition: all 0.4s;
+    }
+
+    &-address {
+        margin-top: 5px;
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.36;
+        color: $white;
+        opacity: 0;
+        transition: all 0.4s;
+    }
+
+    &-arrow {
+        width: 31px;
+        height: 31px;
+        fill: $white;
+        display: block;
+        margin-top: 20px;
+        opacity: 0;
+        transition: all 0.4s;
+    }
 }
 
 .projects__btn {
@@ -441,18 +511,36 @@ button {
     font-size: 18px;
     line-height: 1.44;
     text-align: center;
-    margin-top: 5px;
+    margin: 5px 0 20px;
 }
 
 .request__form {
     display: flex;
-    margin-top: 20px;
+
+    label {
+        color: #BABABA;
+        padding: 0.75rem 0.75rem;
+        transition: all 0.4s ease-in-out;
+    }
 
     .request__input {
         width: 222px;
         height: 50px;
-        padding: 0;
-        margin: 0;
+        border-radius: 50px;
+        outline: none;
+        transition: border 0.4s;
+        font-size: 16px;
+        line-height: 22px;
+        color: $dark;
+
+        &:hover {
+            border: 1px solid #ced4da;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
     }
     
     .request__btn {
@@ -486,6 +574,151 @@ button {
 
         &:hover {
             text-decoration: none;
+        }
+    }
+}
+
+/*------ Info-scroll ------*/
+
+.info-scroll {
+    margin-bottom: 70px;
+    color: $dark;
+    font-weight: 400;
+
+    &__text {
+        max-height: 410px;
+        padding-right: 33px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+    
+        &::-webkit-scrollbar-track {
+            background: #EAEAEA;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+            border-radius: 100px;
+            background-color: $orange;
+        }
+    }
+
+    &__title {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 1.28;
+        margin-bottom: 15px;
+    }
+
+    &__subtitle {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.42;
+        padding-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    &__paragraph {
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 15px;
+    }
+}
+
+/*------ Footer ------*/
+
+.footer {
+    background: $dark;
+    color: $white;
+
+    a {
+        transition: color 0.4s;
+
+        &:hover {
+            color: $orange;
+        }
+    }
+}
+
+.upper-footer {
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 40px 0 60px;
+    font-weight: 400;
+
+    .block-title {
+        margin-bottom: 20px;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: 700;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__item {
+        margin-bottom: 15px;
+    }
+
+    &__list--bold {
+        font-weight: 700;
+    }
+}
+
+.upper-footer__insta {
+    margin-top: 20px;
+    font-weight: 700;
+
+    img {
+        margin-right: 8px;
+    }
+}
+
+.footer__line {
+    padding: 0;
+    margin: 0;
+    color: #7D7D7D;
+    opacity: 1;
+}
+
+.lower-footer {
+    font-size: 14px;
+    line-height: 1.36;
+    color: $lightGrey;
+    padding: 25px 0;
+
+    &__conf {
+        text-decoration: underline;
+        margin-left: 40px;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    &__right-side {
+        display: flex;
+        justify-content: end;
+    }
+    
+    .place-start {
+    
+        &:hover {
+            .place-start__logo {
+                fill: $orange;
+            }
+        }
+    
+        &__logo {
+            width: 100px;
+            height: 20px;
+            margin-left: 6px;
+            fill: #AAAAAA;
+            transition: all 0.4s;
         }
     }
 }
@@ -534,15 +767,29 @@ button {
     font-size: 20px;
     line-height: 27px;
     color: $dark;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.form-floating {
+    label {
+        padding-left: 20px;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .form-control {
+        padding-left: 20px;
+    }
 }
 
 .modal__input {
     border-radius: 50px;
     border: 1px solid #E3E1E1;
-    margin-top: 20px;
     outline: none;
-    transition: all 0.4s;
+    transition: border 0.4s;
+    font-size: 16px;
+    line-height: 22px;
+    color: #777777;
 
     &:hover {
         border: 1px solid #B3DAFF;
@@ -551,6 +798,7 @@ button {
     &:focus {
         outline: none;
         border: 1px solid #B3DAFF;
+        box-shadow: none;
     }
 }
 
