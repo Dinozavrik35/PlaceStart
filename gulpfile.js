@@ -21,7 +21,7 @@ function browsersync() {
 function scripts() {
     return src([
         'node_modules/jquery/dist/jquery.min.js', 
-        'node_modules/jquery.maskedinput/src/jquery.maskedinput.js',
+        'node_modules/imask/dist/imask.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js', 
         'app/js/app.js'
     ])

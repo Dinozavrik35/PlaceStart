@@ -32,6 +32,11 @@ body {
     font-family: 'Manrope', sans-serif;
     font-weight: 400;
     font-size: 16px;
+    overflow-x: hidden;
+}
+
+.body {
+    overflow: hidden;
 }
 
 a {
@@ -93,6 +98,42 @@ button {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+}
+
+.header__menu-logo {
+    display: none;
+    width: 18px;
+    height: 15px;
+    background: transparent;
+
+    .menu-bar {
+        display: block;
+        width: 18px;
+        height: 2px;
+        border-radius: 5px;
+        background: $orange;
+        transform: none;
+        transition: all 0.4s;
+    }
+
+    .menu-bar + .menu-bar {
+        margin-top: 4.5px;
+    }
+
+    .menu-bar--first-active {
+        transform: rotate(-45deg) translate3d(-4px, 4px, 0);
+        margin: 0;
+    }
+
+    .menu-bar--second-active {
+        opacity: 0;
+    }
+
+    .menu-bar--third-active {
+        transform: rotate(45deg) translate3d(-5px, -5px, 0);
+        margin: 0;
+
     }
 }
 
@@ -171,7 +212,6 @@ button {
 }
 
 .header__btn {
-
     &::before {
         content: '+7 906 2-999-555';
     }
@@ -183,10 +223,137 @@ button {
     }
 }
 
+.header__small-phone {
+    display: none;
+
+    .phone-icon {
+        width: 18px;
+        height: 18px;
+        fill: $orange;
+    }
+}
+
+/*------ Drop Menu ------*/
+
+.drop-menu {
+    height: 100vh;
+    width: 100vw;
+    background: $white;
+    position: fixed;
+    overflow-y: auto;
+    top: 60px;
+    left: 100%;
+    z-index: 100;
+    transition: transform 0.4s ease;
+
+    @media (min-width: 1200px) {
+        display: none;
+    }
+
+    a {
+        transition: all 0.4s;
+    }
+}
+
+.drop-menu--active {
+    transform: translateX(-100%);
+}
+
+.drop-menu__nav {
+    list-style: none;
+    margin: 0;  
+    padding: 0;
+
+    &-item {
+        border-bottom: solid 1px #EBEBEB;
+
+        &:hover {
+            color: $orange;
+
+            .drop-menu__nav-arrow {
+                fill: $dark-orange
+            }
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    .drop-menu__nav-arrow {
+        fill: $orange;
+        transition: all 0.4s;
+    }
+
+    .drop-menu__item-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 20px;
+    }
+
+    .drop-menu__item-menu {
+        list-style: none;
+        display: none;
+    }
+}
+
+.drop-menu__nav-arrow {
+    width: 12px;
+    height: 9px;
+    fill: $orange;
+}
+
+.drop-menu__footer {
+    padding: 20px;
+    background: $dark;
+    color: $white;
+    height: 100%;
+
+    .block-title {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .drop-menu__contacts-inner {
+        font-size: 15px;
+        line-height: 1.73;
+        font-weight: 400;
+
+        a {
+            display: block;
+            width: 100%;
+
+            &:hover {
+                color: $orange;
+            }
+        }
+    }
+
+    .drop-menu__insta {
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 700;
+        margin-top: 10px;
+        cursor: pointer;
+
+        &:hover {
+            color: $orange;
+        }
+
+        img {
+            margin-right: 4px;
+        }
+    }
+}
+
 /*------ Intro ------*/
 
 .intro {
     background: url('../images/dest/backgrounds/intro_bg.jpg') no-repeat center;
+    background-size: cover;
     height: 620px;
     color: $white;
 
@@ -314,6 +481,10 @@ button {
 
 /*------ About ------*/
 
+.about {
+    position: relative;
+}
+
 .about__title {
     font-weight: 700;
     margin-bottom: 15px;
@@ -329,8 +500,13 @@ button {
     font-weight: 400;
 }
 
+.about__log {
+    padding-top: 10px;
+}
+
 .about__logs {
     display: flex;
+    padding-left: 15px;
 
     .about__log-item {
         @include center;
@@ -346,6 +522,7 @@ button {
         .log-title {
             text-align: center;
             font-size: 16px;
+            line-height: 1.62;
         }
     }
 }
@@ -353,7 +530,7 @@ button {
 /*------ Projects ------*/
 
 .projects {
-    margin: 60px 0 70px;
+    margin: 65px 0 70px;
 
     .container {
         @include center;
@@ -374,6 +551,19 @@ button {
     display: block;
     position: relative;
     margin-bottom: 30px;
+    height: 300px;
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 64.58%, #000000 100%);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 5;
+    }
 
     &::after {
         content: '';
@@ -385,6 +575,7 @@ button {
         top: 0;
         left: 0;
         opacity: 0;
+        z-index: 10;
         transition: all 0.4s;
     }
 
@@ -406,6 +597,7 @@ button {
         width: 100%;
         height: 100%;
         border-radius: 10px;
+        object-fit: cover;
     }
     
     &-text {
@@ -455,6 +647,10 @@ button {
 
 /*------ Benefits ------*/
 
+.benefits {
+    position: relative;
+}
+
 .benefit-card {
     @include center;
     flex-direction: column;
@@ -476,7 +672,7 @@ button {
 /*------ Request ------*/
 
 .request {
-    margin: 70px 0 70px;
+    margin: 10px 0 70px;
     background: linear-gradient(177.7deg, #FF9700 10.14%, #FF6800 78.17%, #FF6802 78.33%);
     color: $white;
     position: relative;
@@ -511,7 +707,7 @@ button {
     font-size: 18px;
     line-height: 1.44;
     text-align: center;
-    margin: 5px 0 20px;
+    margin-bottom: 30px;
 }
 
 .request__form {
@@ -568,6 +764,7 @@ button {
     text-align: center;
     color: #A72800;
     margin-top: 10px;
+    margin-bottom: 0;
 
     a {
         text-decoration: underline;
@@ -644,7 +841,7 @@ button {
 .upper-footer {
     font-size: 18px;
     line-height: 1.33;
-    padding: 40px 0 60px;
+    padding: 40px 0 50px;
     font-weight: 400;
 
     .block-title {
@@ -661,7 +858,7 @@ button {
     }
 
     &__item {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 
     &__list--bold {
@@ -721,6 +918,27 @@ button {
             transition: all 0.4s;
         }
     }
+}
+
+/*------ Background Logs ------*/
+
+.bg-log {
+    position: absolute;
+    opacity: 0.07;
+    z-index: -1;
+    max-width: fit-content;
+    max-height: fit-content;
+}
+
+.bg-log--first {
+    transform: rotate(-16.34deg);
+    bottom: -85%; 
+    right: -7%;
+}
+
+.bg-log--second {
+    top: -52%;
+    left: -4.3%;
 }
 
 /*------ Modal ------*/
@@ -824,5 +1042,400 @@ button {
         &:hover {
             text-decoration: none;
         }
+    }
+}
+
+/*------ Media ------*/
+
+@media (max-width: 1500px) {
+    .request__wood-2 {
+        height: 215px;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .container {
+        padding: 0 20px;
+    }
+
+    .header {
+        height: 60px;
+
+        &__menu-logo {
+            display: block;
+        }
+    
+        &__logo {
+            width: 92px;
+            height: 42px;
+        }
+    
+        &__nav {
+            display: none;
+        }
+    
+        &__btn {
+            display: none;
+        }
+        
+        &__small-phone {
+            display: block;
+        }
+    }
+    
+    .insta-banner {
+        display: none;
+    }
+
+    .request__wood-1, .request__wood-2 {
+        display: none;
+    }
+
+    .intro {
+        height: 450px;
+
+        &__title {
+            font-size: 28px;
+            line-height: 1.21;
+        }
+    
+        &__subtitle {
+            font-size: 15px;
+            line-height: 1.4;
+        }
+    }
+
+    .bg-log {
+        display: none;
+    }
+
+    .types {
+        margin: 35px 0;
+
+        &__card {
+            min-height: 157px;
+            height: 157px;
+
+            &:hover {
+                transform: none;
+            }
+    
+            &::after {
+                width: 127px;
+                height: 127px;
+                top: 16px;
+                right: 53px;
+            } 
+
+            &-title {
+                font-size: 20px;
+                line-height: 27px;  
+            }
+        
+            &-img {
+                width: 176px;
+                height: 131px;
+            }
+
+            &-arrow {
+                margin-top: 70px;
+            }
+        }
+    }
+
+    .about {
+        &__title {
+            font-size: 20px;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+
+        &__description {
+            font-size: 13px;
+            line-height: 1.54;
+            margin-bottom: 20px;
+        }
+
+        &__logs {
+
+            .about__log-item {
+                margin-right: 60px;
+                
+                .log-title {
+                    font-size: 13px;
+                    line-height: 1.54;
+                }
+        
+                .log-img {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        }
+    }
+
+    .section-title {
+        font-size: 20px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    .projects {
+        margin-bottom: 50px;
+    }
+
+    .project__item {
+        &-text {
+            font-size: 15px;
+            line-height: 21px;
+            bottom: -30px;
+        }
+
+        &-address {
+            font-size: 13px;
+            line-height: 1.54;
+        }
+
+        &-arrow {
+            width: 23px;
+            height: 11px;
+        }
+    }
+
+    .benefit-card {
+        margin-bottom: 20px;
+    }
+
+    .benefit-img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .benefit-title {
+        font-size: 13px;
+        line-height: 1.54;
+    }
+
+    .request {
+        margin-bottom: 35px;
+
+        .container {
+            padding: 40px;
+        }
+
+        &__title {
+            font-size: 20px;
+            line-height: 1.3;
+        }
+
+        &__text {
+            font-size: 13px;
+            line-height: 1.54;
+        }
+    }
+
+    .info-scroll {
+        margin-bottom: 35px;
+    }
+
+    .upper-footer {
+        padding: 35px 0;
+    }
+
+    .lower-footer {
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: 1000px) {
+
+    .types__card {
+        margin-bottom: 15px;
+    }
+
+    .info-scroll__text {
+        max-height: 350px;
+    }
+
+    .upper-footer {
+        padding: 30px 0 5px;
+
+        .block-title {
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        &__list {
+            margin-bottom: 35px;
+            font-size: 15px;
+            line-height: 1.73;
+        }
+    }
+
+    .lower-footer {
+        &__left-side {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        } 
+
+        &__conf {
+            text-align: center;
+            margin-top: 10px;
+            margin-left: 0;
+        }
+
+        &__right-side {
+            margin-top: 10px;
+            text-align: center;
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    .intro {
+        background: url("../images/dest/backgrounds/small_intro-bg.jpg") no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 390px;
+
+        .container {
+            padding-top: 70px;   
+        }
+
+        &__btn {
+            margin-top: 50px;
+        }
+    }
+
+    .types {
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__card {
+            max-width: 370px;
+        }
+    }
+
+    .about__logs {
+        flex-direction: column;
+        align-items: start;
+
+        .about__log-item {
+            flex-direction: row;
+            display: flex;
+            margin-bottom: 15px;
+
+            br {
+                display: none;
+            }
+        }
+
+        .log-title {
+            margin-left: 15px;
+        }
+    }
+
+    .about__log {
+        display: none;
+    }
+
+    .projects {
+        margin-top: 20px;
+    }
+
+    .request__form {
+        flex-direction: column;
+
+        .request__input {
+            width: 260px;
+        }
+        
+        .request__btn {
+            margin: 10px 0 0;
+            width: 260px;
+        }
+    }
+
+    .info-scroll {
+
+        &__text {
+            margin-top: 20px;
+        }
+
+        &__img {
+            width: 100%;
+        }
+
+        &__title {
+            font-size: 20px;
+            line-height: 27px;
+            margin-bottom: 10px;
+        }
+
+        &__subtitle {
+            font-size: 18px;
+            line-height: 1.3;
+            margin-bottom: 15px;
+            padding: 0;
+        }
+
+        &__paragraph {
+            font-size: 13px;
+            line-height: 1.54;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+
+    br {
+        display: none;
+    }
+
+    .about__log-item {
+        margin-bottom: 0;
+    }
+
+    .types__card {
+        max-width: 100%;
+    }
+
+    .project__item {
+        height: 227px;
+        margin-bottom: 15px;
+    }
+
+    .benefit-card {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        margin-bottom: 10px;
+
+        .benefit-title {
+            margin-left: 20px;
+            text-align: start;
+        }
+    }
+
+    .upper-footer {
+        padding: 30px 0 30px;
+
+        br {
+            display: block;
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .types__card {
+        padding: 10px;
     }
 }
