@@ -82,6 +82,7 @@ function buildCopy() {
 	return src([ 
 		'app/css/**/*.min.css',
 		'app/js/**/*.min.js',
+        'app/fonts/**/*',
 		'app/images/dest/**/*',
 		'app/**/*.html',
 		], { base: 'app' }) 

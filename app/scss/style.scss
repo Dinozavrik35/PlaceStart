@@ -1,16 +1,21 @@
 /*------ imports ------*/
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 @import "node_modules/bootstrap/scss/bootstrap";
+@import "app/fonts/stylesheet";
 
 /*------ Variables ------*/
 
 $white: #FFFFFF;
+$lightBlueBorder: #B3DAFF;
 $orange: #FF9701;
 $dark-orange: #FF5C00;
+$red: #FF0000;
+$darkRed: #A72800;
 $dark: #333333;
 $black: #222222;
 $grey: #A4A4A4;
 $lightGrey: #AAAAAA;
+$extraLightGrey: #EBEBEB;
+$backBtnGrey: #828282;
 
 /*------ Mixins ------*/
 
@@ -92,6 +97,9 @@ button {
     @include center;
     background-color: $white;
     height: 80px;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.07);
 
     &__inner {
         height: 100%;
@@ -149,11 +157,11 @@ button {
 
     .nav-item {
         @include center;
-        padding: 30px 25px;
+        padding: 30px 23px;
         cursor: pointer;
         position: relative;
 
-        .nav-item-link {
+        &-link {
             transition: all 0.4s;
         }
 
@@ -241,14 +249,11 @@ button {
     background: $white;
     position: fixed;
     overflow-y: auto;
+    overflow-x: hidden;
     top: 60px;
     left: 100%;
-    z-index: 100;
+    z-index: 50;
     transition: transform 0.4s ease;
-
-    @media (min-width: 1200px) {
-        display: none;
-    }
 
     a {
         transition: all 0.4s;
@@ -265,7 +270,7 @@ button {
     padding: 0;
 
     &-item {
-        border-bottom: solid 1px #EBEBEB;
+        border-bottom: solid 1px $extraLightGrey;
 
         &:hover {
             color: $orange;
@@ -280,7 +285,7 @@ button {
         }
     }
 
-    .drop-menu__nav-arrow {
+    &-arrow {
         fill: $orange;
         transition: all 0.4s;
     }
@@ -291,10 +296,48 @@ button {
         align-items: center;
         padding: 13px 20px;
     }
+}
 
-    .drop-menu__item-menu {
-        list-style: none;
-        display: none;
+.drop-menu__item-menu {
+    list-style: none;
+    background: $white;
+    color: $dark;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    z-index: 60;
+    transition: all 0.4s;
+    margin: 0;
+    padding: 0;
+
+    .back {
+        color: $backBtnGrey;
+        background: $extraLightGrey;
+        cursor: pointer;
+
+        &:hover {
+            color: $backBtnGrey;
+        }
+    }
+
+    .drop-menu__item-arrow {
+        width: 12px;
+        height: 9px;
+        fill: $backBtnGrey;
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        margin-right: 10px;
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        padding: 13px 20px;
+
+        &:hover {
+            color: $orange;
+        }
     }
 }
 
@@ -511,7 +554,7 @@ button {
     .about__log-item {
         @include center;
         flex-direction: column;
-        margin-right: 105px;
+        margin-right: 90px;
 
         .log-img {
             width: 55px;
@@ -530,7 +573,7 @@ button {
 /*------ Projects ------*/
 
 .projects {
-    margin: 65px 0 70px;
+    margin: 75px 0 70px;
 
     .container {
         @include center;
@@ -569,7 +612,7 @@ button {
         content: '';
         width: 100%;
         height: 100%;
-        background: linear-gradient(180deg, rgba(255, 151, 1, 0.85) 0%, rgba(255, 104, 2, 0.85) 100%), url(Дом_из_клееного_бруса_6.jpg), #C4C4C4;
+        background: linear-gradient(180deg, rgba(255, 151, 1, 0.85) 0%, rgba(255, 104, 2, 0.85) 100%), #C4C4C4;
         border-radius: 10px;
         position: absolute;
         top: 0;
@@ -654,7 +697,7 @@ button {
 .benefit-card {
     @include center;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 43px;
 }
 
 .benefit-img {
@@ -672,7 +715,7 @@ button {
 /*------ Request ------*/
 
 .request {
-    margin: 10px 0 70px;
+    margin: 20px 0 70px;
     background: linear-gradient(177.7deg, #FF9700 10.14%, #FF6800 78.17%, #FF6802 78.33%);
     color: $white;
     position: relative;
@@ -738,6 +781,16 @@ button {
             box-shadow: none;
         }
     }
+
+    .wrong-input {
+        &:hover {
+            border: 1px solid $red;
+        }
+
+        &:focus {
+            border: 1px solid $red; 
+        }
+    }
     
     .request__btn {
         width: 222px;
@@ -762,7 +815,7 @@ button {
     font-size: 12px;
     line-height: 1.5;
     text-align: center;
-    color: #A72800;
+    color: $darkRed;
     margin-top: 10px;
     margin-bottom: 0;
 
@@ -792,7 +845,7 @@ button {
         }
     
         &::-webkit-scrollbar-track {
-            background: #EAEAEA;
+            background: $extraLightGrey;
         }
     
         &::-webkit-scrollbar-thumb {
@@ -914,7 +967,7 @@ button {
             width: 100px;
             height: 20px;
             margin-left: 6px;
-            fill: #AAAAAA;
+            fill: $lightGrey;
             transition: all 0.4s;
         }
     }
@@ -995,6 +1048,13 @@ button {
         transition: transform 0.4s ease-in-out;
     }
 
+    .wrong-label {
+        color: $red;
+        font-size: 13px;
+        transition: none;
+        transform: scale(.85) translateY(-.5rem) translateX(.15rem);
+    }
+
     .form-control {
         padding-left: 20px;
     }
@@ -1010,13 +1070,25 @@ button {
     color: #777777;
 
     &:hover {
-        border: 1px solid #B3DAFF;
+        border: 1px solid $lightBlueBorder;
     }
 
     &:focus {
         outline: none;
-        border: 1px solid #B3DAFF;
+        border: 1px solid $lightBlueBorder;
         box-shadow: none;
+    }
+}
+
+.wrong-input {
+    border: solid 1px $red;
+
+    &:hover {
+        border: 1px solid $red;
+    }
+
+    &:focus {
+        border: 1px solid $red; 
     }
 }
 
@@ -1053,6 +1125,13 @@ button {
     }
 }
 
+@media (min-width: 1200px) {
+
+    .drop-menu {
+        display: none;
+    }
+}
+
 @media (max-width: 1200px) {
 
     .container {
@@ -1061,6 +1140,7 @@ button {
 
     .header {
         height: 60px;
+        box-shadow: 0px 1px 7px rgba(0, 0, 0, 0.09);
 
         &__menu-logo {
             display: block;
@@ -1145,6 +1225,7 @@ button {
     }
 
     .about {
+
         &__title {
             font-size: 20px;
             line-height: 1.3;
@@ -1155,6 +1236,10 @@ button {
             font-size: 13px;
             line-height: 1.54;
             margin-bottom: 20px;
+
+            br {
+                display: none;
+            }
         }
 
         &__logs {
