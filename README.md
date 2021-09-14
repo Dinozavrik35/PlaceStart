@@ -4,7 +4,7 @@
 - Редактор кода - Visual Studio Code
 - Графический редактор - Figma
 - Сборщик - Gulp
-- Выполнено с использование Pixel Perfect
+- Выполнено с использованием Pixel Perfect
 - Валидность кода проверена с помощью The W3C Markup Validation Service
 
 Исходники - папка `app`
